@@ -1,0 +1,38 @@
+Constant-acceleration motion problems
+
+variables: a, x, t, vi, vf
+a, x, and t pertain to the process (and hence use the word "while"), unless x = 0, in which case we say "x ends at starting position".
+vi at beginning: "... starts at ___ m/s before"
+vf at end: " before reaching ____ m/s"
+vi and vf are past and future, respectively, so that vi takes "before" afterwards, if something follows, whereas vf takes "after" in this circumstance.
+
+1: appears first (after noun)
+2: mid/end-sentence
+3: end-sentence
+
+a (present):
+1) accelerates/changes velocity at ___ m/s/s
+2) while accelerating/changing velocity at ___ m/s/s/.
+
+x (present):
+1) moves ___ m forwards/backwards (ends at starting position)
+2) while moving ___ m forwards/backwards (ending at starting position)
+or for ___ m forwards/backwards
+
+t (present):
+1) moves for ____ s
+2) for ___ s or while ___ s elapses
+
+vi (past):
+1) starts forwards/backwards at ___ m/s before
+2) after starting forwards/backwards at ____ m/s and then
+
+vf (future):
+1) reaches ____ m/s (forwards/backwards) after
+2) before reaching ____ m/s (forwards/backwards) after
+
+what works:
+a1 followed by anything2 (or vf3)
+x1 ""
+t1 nothing
+vi1
