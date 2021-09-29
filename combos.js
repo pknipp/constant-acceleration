@@ -17,14 +17,13 @@ const sentence = () => {
   }
   let x = (2 * vi + a * t) * t / 2;
 
-  let vfMoving = Math.abs(vf) + " m/s" + (vf > 0 ? " forwards" : " backwards");
-
+  let vfWords = Math.abs(vf) + " m/s" + (vf > 0 ? " forwards" : " backwards");
   let phrases = [
       [1, [" accelerates", " accelerating"], ` at ${a} m/s/s`, "acceleration", a + ' m/s/s'],
       [1, [" moves", " moving"],  ` ${!x ? " to its initial position" : (Math.abs(x) + " m" + ((x > 0) ? " forwards" : " backwards"))}`, "displacement", x + ' m'],
       [1, [" moves", " moving"], ` for ${t} s`, "duration", t + ' s'],
       [0, [" starts", " starting"], !vi ? " from rest" : ((vi > 0 ? " forwards" : " backwards") + " at " + Math.abs(vi) + " m/s"), "initial velocity", vi + ' m/s'],
-      [2, [" reaches ", " reaching "], !vf ? "motionlessness" : (Math.abs(vf) + " m/s" + (vf > 0 ? " forwards" : " backwards")), "final velocity", vf + ' m/s']
+      [2, [!vf ? " stops" : " reaches " + vfWords, !vf ? " stopping" : " reaching " + vfWords], "", "final velocity", vf + ' m/s']
   ];
   for (let i = phrases.length - 1; i > 0; i--) {
     let j = Math.floor(Math.random() * (i + 1));
@@ -39,4 +38,4 @@ const sentence = () => {
   return sentence;
 }
 
-console.log(sentence());
+// console.log(sentence());
