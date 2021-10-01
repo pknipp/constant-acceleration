@@ -1,2 +1,15 @@
-Constant-acceleration motion problems
+Constant-acceleration motion problems:
 
+Display the statement of the problem, along with list of 5 variables and uncorrelated list of 5 equations.
+
+Tasks for user:
+- Select which variables are provided and which are sought. Intermediate steps: ask user to provide the values of each of the variables provided, including signs.
+- Select which equation to use. Intermediate steps: ask user to specify all equations which contain the sought variable.  Ask user to specify how many unknowns are in each of these remaining 4 equations.
+- Type the equation, with all - but one - variable replaced by a number.
+- Solve the problem.
+
+TO DO:
+- Figure out how to deal with the possibility of two solutions (owing to quadratic nature of some of the equations).  In the problem statement, provide a boolean with sufficient information (e.g., positive/negative v or smaller/larger value of t).
+- Figure out what hints or intermediate steps to provide, if desired by the user.
+- Figure out how to discern whether two equations (each of one variable) are equivalent, programmatically.
+- Figure out how to do this with freefall.

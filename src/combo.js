@@ -1,4 +1,4 @@
-const sentence = () => {
+const combo = () => {
 
   let vi, vf;
   let [aMax, tMax, vMax] = [9, 9, 9];
@@ -29,13 +29,16 @@ const sentence = () => {
     let j = Math.floor(Math.random() * (i + 1));
     [phrases[i], phrases[j]] = [phrases[j], phrases[i]];
   }
+  let problem = {};
   let word1 = phrases[0][0] < phrases[1][0] ? " before" : phrases[0][0] > phrases[1][0] ? " after" : " while";
   let word2 = Math.sign(phrases[2][0] - phrases[0][0]) === Math.sign(phrases[1][0] - phrases[0][0]) ? " and" :
               phrases[2][0] === phrases[0][0] ? " while" :
               phrases[2][0] > phrases[1][0] ? " before" : " after";
-  let sentence = "An object" + phrases[0][1][0] + phrases[0][2] + word1 + phrases[1][1][1] + phrases[1][2] + word2+ phrases[2][1][1] + phrases[2][2] + ".";
-  sentence += `  Calculate the ${phrases[3][3]} of this process. Answer: ${phrases[3][4]}.  The "missing quantity" for this problem is the ${phrases[4][3]}, which equals ${phrases[4][4]}.`;
-  return sentence;
+  problem.statement = "An object" + phrases[0][1][0] + phrases[0][2] + word1 + phrases[1][1][1] + phrases[1][2] + word2+ phrases[2][1][1] + phrases[2][2] + ".";
+  problem.question = `What is the ${phrases[3][3]} of this process?`;
+  problem.answer =  phrases[3][4];
+  problem.note = `The "missing quantity" for this problem is the ${phrases[4][3]}, which equals ${phrases[4][4]}.`;
+  return problem;
 }
 
-// console.log(sentence());
+module.exports = combo;
