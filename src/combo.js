@@ -2,8 +2,7 @@ const combo = () => {
 
   let vi, vf;
   let [aMax, tMax, vMax] = [9, 9, 9];
-
-  let a = (1 + Math.floor(aMax * Math.random())) * (Math.random() < 0.1 ? -1 : 1);
+  let a = (1 + Math.floor(aMax * Math.random())) * (Math.random() < 0.5 ? -1 : 1);
   let t = 1 + Math.floor(tMax * Math.random());
 
   // case = 0 (one v = 0), 1 (x = 0), or 2 (generic)
@@ -12,8 +11,8 @@ const combo = () => {
   if (!Case) {
     [vi, vf] = Math.random() < 0.5 ? [0, a * t] : [-a * t, 0];
   } else {
-    vi = (1 + Math.floor(vMax * Math.random())) * (Math.random() < 0.5 ? -1 : 1);
-    vf = Case === 1 ? -vi : vi + a * t;
+    vi = (Case === 1) ? -a * t / 2 : (1 + Math.floor(vMax * Math.random())) * (Math.random() < 0.5 ? -1 : 1);
+    vf = vi + a * t;
   }
   let x = (2 * vi + a * t) * t / 2;
 
@@ -25,6 +24,7 @@ const combo = () => {
       [0, [" starts", " starting"], !vi ? " from rest" : ((vi > 0 ? " forwards" : " backwards") + " at " + Math.abs(vi) + " m/s"), "initial velocity", vi + ' m/s'],
       [2, [!vf ? " stops" : " reaches " + vfWords, !vf ? " stopping" : " reaching " + vfWords], "", "final velocity", vf + ' m/s']
   ];
+  // Randomly shuffle the phrases.
   for (let i = phrases.length - 1; i > 0; i--) {
     let j = Math.floor(Math.random() * (i + 1));
     [phrases[i], phrases[j]] = [phrases[j], phrases[i]];

@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import combo from './combo';
 
 const App = () => {
-    let problem = combo();
+    const [problem, setProblem] = useState({});
+    useEffect(() => setProblem(combo()), []);
     return (
         <>
             <h4>Constant-acceleration motion problem:</h4>
