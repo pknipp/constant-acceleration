@@ -18,26 +18,41 @@ const combo = () => {
 
   let vfWords = Math.abs(vf) + " m/s" + (vf > 0 ? " forwards" : " backwards");
   let phrases = [
-      [1, [" accelerates", " accelerating"], ` at ${a} m/s/s`, "acceleration", a + ' m/s/s'],
-      [1, [" moves", " moving"],  ` ${!x ? " to its initial position" : (Math.abs(x) + " m" + ((x > 0) ? " forwards" : " backwards"))}`, "displacement", x + ' m'],
-      [1, [" moves", " moving"], ` for ${t} s`, "duration", t + ' s'],
-      [0, [" starts", " starting"], !vi ? " from rest" : ((vi > 0 ? " forwards" : " backwards") + " at " + Math.abs(vi) + " m/s"), "initial velocity", vi + ' m/s'],
-      [2, [!vf ? " stops" : " reaches " + vfWords, !vf ? " stopping" : " reaching " + vfWords], "", "final velocity", vf + ' m/s']
+      [1, [" accelerates", " accelerating"], ` at ${a} m/s/s`, "acceleration", a + ' m/s/s', 'a'],
+      [1, [" moves", " moving"],  ` ${!x ? " back to its initial position" : (Math.abs(x) + " m" + ((x > 0) ? " forwards" : " backwards"))}`, "displacement", x + ' m', 'x'],
+      [1, [" moves", " moving"], ` for ${t} s`, "duration", t + ' s', 't'],
+      [0, [" starts", " starting"], !vi ? " from rest" : ((vi > 0 ? " forwards" : " backwards") + " at " + Math.abs(vi) + " m/s"), "initial velocity", vi + ' m/s', 'vi'],
+      [2, [!vf ? " stops" : " reaches " + vfWords, !vf ? " stopping" : " reaching " + vfWords], "", "final velocity", vf + ' m/s', 'vf']
   ];
   // Randomly shuffle the phrases.
   for (let i = phrases.length - 1; i > 0; i--) {
     let j = Math.floor(Math.random() * (i + 1));
     [phrases[i], phrases[j]] = [phrases[j], phrases[i]];
   }
+  let sought = phrases[3];
+  let missing= phrases[4];
+
   let problem = {};
   let word1 = phrases[0][0] < phrases[1][0] ? " before" : phrases[0][0] > phrases[1][0] ? " after" : " while";
   let word2 = Math.sign(phrases[2][0] - phrases[0][0]) === Math.sign(phrases[1][0] - phrases[0][0]) ? " and" :
               phrases[2][0] === phrases[0][0] ? " while" :
               phrases[2][0] > phrases[1][0] ? " before" : " after";
   problem.statement = "An object" + phrases[0][1][0] + phrases[0][2] + word1 + phrases[1][1][1] + phrases[1][2] + word2+ phrases[2][1][1] + phrases[2][2] + ".";
-  problem.question = `What is the ${phrases[3][3]} of this process?`;
-  problem.answer =  phrases[3][4];
-  problem.note = `The "missing quantity" for this problem is the ${phrases[4][3]}, which equals ${phrases[4][4]}.`;
+  problem.question = `What is the ${sought[3]} of this process?`;
+  problem.answer = sought[4];
+  // If the equation is quadratic in t, the problem MAY involve solving a nontrivial quadratic equation.
+  if ((('vi' === missing[5] && vf) || ('vf' === missing[5] && vi)) && sought[5] === 't' && x) {
+    problem.difficult = true;
+    let tVertex = missing[5] === 'vf' ? -vi / a : vf / a;
+    let dt = Math.abs(t - tVertex);
+    // In certain cases the user may face two distinct positive roots.
+    if (tVertex > 0 && tVertex !== t && t - dt > 0) {
+      let supplement = ["shortest", "longest"][Number(t > tVertex)] + " possible ";
+      problem.question = problem.question.split("duration").join(supplement + "duration");
+    }
+  }
+
+  problem.note = `The "missing quantity" for this problem is the ${missing[3]}, which equals ${missing[4]}.`;
   return problem;
 }
 

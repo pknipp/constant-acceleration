@@ -9,7 +9,7 @@ Tasks for user:
 - Solve the problem.
 
 TO DO:
-- Figure out how to deal with the possibility of two solutions (owing to quadratic nature of some of the equations).  In the problem statement, provide a boolean with sufficient information (e.g., positive/negative v or smaller/larger value of t).
+- Figure out how to deal with the possibility of two solutions (owing to quadratic nature of some of the equations).  For those which are quadratic time, replace "What is the duration of this process" with either "... largest possible duration ..." or "... smallest possible (positive?) duration ...".
 - Figure out what hints or intermediate steps to provide, if desired by the user.
 - Figure out how to discern whether two equations (each of one variable) are equivalent, programmatically.
 - Figure out how to do this with freefall.

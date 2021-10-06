@@ -11,6 +11,7 @@ const App = () => {
             <div><b>Question:</b> {problem.question}</div>
             <div><b>Answer:</b> {problem.answer}</div>
             <div><b>Note:</b> {problem.note}</div>
+            {problem.difficult ? <div>(higher difficulty)</div> : null}
         </>
     )
 }
